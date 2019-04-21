@@ -20,7 +20,8 @@ The project will curate and collect an original dataset of tweets about movies t
 
 
 ## Installation:
-1. Clone or download this repository. 
+1. Download this repository to your computer and unzip the folder.
+
 2. Download Anaconda 3 through this link: [https://www.anaconda.com/distribution/#download-section](https://www.anaconda.com/distribution/#download-section)
 
 3. If you need assistance installing Anaconda: 
