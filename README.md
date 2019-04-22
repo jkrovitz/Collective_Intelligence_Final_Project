@@ -40,7 +40,7 @@ The project will curate and collect an original dataset of tweets about movies t
 
 8. Type **cd iPython_Notebooks**. 
 
-9. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type **http://localhost:8888/** into the address bar. 
+9. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type [http://localhost:8888/](http://localhost:8888) into the address bar. 
 
 10. When the code loads, click to open the **Run** tab. 
 
