@@ -17,9 +17,16 @@ The project will curate and collect an original dataset of tweets about movies t
 
 • Week 4 (4/19) - The Curse of La Llorona, Breakthrough, Little Woods
 
+##Before Installation:
 
+1. Sign up for an Amazon AWS account: [aws.amazon.com](aws.amazon.com)
+2. Once signed up, login and click on your username.
+3. In the dropdown menu click on **My Security Credentials.**
+4. Click on **Access keys (access key ID and secret access key)** to expand.
+5. Click **Create Access Key**.
+6. Click the **Download Key File** button in the popup that appears. Keep your key file in a safe place, and remmber where you store it, as you will need it later.
 
-## Installation:
+## Install
 1. Download this repository to your computer and unzip the folder.
 
 2. Download Anaconda 3 through this link: [https://www.anaconda.com/distribution/#download-section](https://www.anaconda.com/distribution/#download-section)
@@ -34,17 +41,15 @@ The project will curate and collect an original dataset of tweets about movies t
 
 5. Type in **cd**, drag the repository folder into the terminal window / Anaconda Prompt window, and press [Enter].
 
-6. Type **conda env create jkrovitz/awsenv**.
+6. Type **conda env create -f awsEnv.yml**.
 
-7. Type **pip install -r requirements.txt**
+7. Type **conda activate awsenv**.
 
-8. Type **conda activate awsenv**.
+8. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type [http://localhost:8888/](http://localhost:8888) into the address bar.
 
-9. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type [http://localhost:8888/](http://localhost:8888) into the address bar.
+9. When the window loads, if the file 'readingInMovieTweets.ipynb' is not open, it should be displayed in the panel on the left. Click on it. If the file is already open, procede to step 11.
 
-10. When the window loads, if the file 'readingInMovieTweets.ipynb' is not open, it should be displayed in the panel on the left. Click on it. If the file is already open, proceed to step 11.
-
-11. When the window opens, the file 'readingInMovieTweets.ipynb' should be open. If not, it should be displayed in the panel on the left, click to open it. If the file is already open, click to open the **Run** tab.
+10. Fill in your 'access key ID' and 'secret access key' where specified.
 
 11. Click **Run All Cells** to see the code output.
 
