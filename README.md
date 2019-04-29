@@ -29,7 +29,9 @@ The project will curate and collect an original dataset of tweets about movies t
 ## Install
 1. Download this repository to your computer and unzip the folder.
 
-2. Download Anaconda 3 through this link: [https://www.anaconda.com/distribution/#download-section](https://www.anaconda.com/distribution/#download-section)
+2. Download Anaconda 3 through this link: 
+For Mac OS X: [https://www.anaconda.com/distribution/#download-section/Anaconda3-2019.03-MacOSX-x86_64](https://www.anaconda.com/distribution/#download-section/Anaconda3-2019.03-MacOSX-x86_64)
+For Windows: [https://www.anaconda.com/distribution/#download-section/Anaconda3-2019.03-Windows-x86_64](https://www.anaconda.com/distribution/#download-section/Anaconda3-2019.03-Windows-x86_64)
 
 3. If you need assistance installing Anaconda:
 
