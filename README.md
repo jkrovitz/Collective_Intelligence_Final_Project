@@ -29,37 +29,28 @@ The project will curate and collect an original dataset of tweets about movies t
 ## Install
 1. Download this repository to your computer and unzip the folder.
 
-2. Download Anaconda 3 through this link: https://www.anaconda.com/distribution/. Make sure to download the correct version for your operating system. 
+2. Download Python 3.7. 
 
-3. If you need assistance installing Anaconda:
+3. Open your terminal if you are using a Mac or your command prompt if you are using a PC.
 
-    Directions for Mac OS X: [https://www.datacamp.com/community/tutorials/installing-anaconda-mac-os-x](https://www.datacamp.com/community/tutorials/installing-anaconda-mac-os-x)
+4. Type in **cd**, drag the repository folder into the terminal window / Command Prompt window, and press [Enter].
 
-    Directions for Windows: [https://www.datacamp.com/community/tutorials/installing-anaconda-windows](https://www.datacamp.com/community/tutorials/installing-anaconda-windows)
+5. Type **pip install -r requirements.txt**.
 
-4. After Anaconda 3 is installed successfully, open your terminal if you are using a Mac or your Anaconda prompt if you are using a PC.
+6. Type **jupyter lab**.
 
-5. Type in **cd**, drag the repository folder into the terminal window / Anaconda Prompt window, and press [Enter].
+7. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type [http://localhost:8888/](http://localhost:8888) into the address bar.
 
-6. Type **conda env create -f AWSenv.yml**.
+8. When the window loads, if the file 'readingInMovieTweets.ipynb' is not open, it should be displayed in the panel on the left. Click on it. If the file is already open, procede to step 11.
 
-7. Type **conda install --name AWSenv --file spec-file.txt**.
+9. Fill in your 'access key ID' and 'secret access key' where specified.
 
-8. Type **conda activate AWSenv.yml**.
+10. Click **Run All Cells** to see the code output.
 
+11. When you are done running code, click **File** and select **Quit**.
 
-9. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type [http://localhost:8888/](http://localhost:8888) into the address bar.
+12. A quit confirmation message will popup. Click **Quit** to confirm.
 
-10. When the window loads, if the file 'readingInMovieTweets.ipynb' is not open, it should be displayed in the panel on the left. Click on it. If the file is already open, procede to step 11.
+13. You can then close the tab.
 
-11. Fill in your 'access key ID' and 'secret access key' where specified.
-
-12. Click **Run All Cells** to see the code output.
-
-13. When you are done running code, click **File** and select **Quit**.
-
-14. A quit confirmation message will popup. Click **Quit** to confirm.
-
-15. You can then close the tab.
-
-16. Back in the terminal window, type in **conda deactivate**, which will deactivate the conda environment.
+14. Back in the terminal window, type in **conda deactivate**, which will deactivate the conda environment.

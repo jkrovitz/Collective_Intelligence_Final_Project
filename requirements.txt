@@ -1,0 +1,9 @@
+pip==19.1.0
+jupyterlab
+boto3
+numpy
+pandas
+textstat
+plotly
+ggplot
+matplotlib
