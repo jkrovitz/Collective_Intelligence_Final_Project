@@ -17,7 +17,7 @@ The project will curate and collect an original dataset of tweets about movies t
 
 • Week 4 (4/19) - The Curse of La Llorona, Breakthrough, Little Woods
 
-##Before Installation:
+## Before Installation:
 
 1. Sign up for an Amazon AWS account: [aws.amazon.com](aws.amazon.com)
 2. Once signed up, login and click on your username.
