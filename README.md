@@ -18,7 +18,8 @@ The project will curate and collect an original dataset of tweets about movies t
 • Week 4 (4/19) - The Curse of La Llorona, Breakthrough, Little Woods
 
 ## Before Installation:
-  ### If you wish to run sentiment_analysis.ipynb, you must sign up for an Amazon AWS account. ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `#f03c15` You will be charged at a certain amount of Tweets. Refer to [https://aws.amazon.com/comprehend/pricing/](https://aws.amazon.com/comprehend/pricing/) for more information about pricing. 
+  ### If you wish to run sentiment_analysis.ipynb, you must sign up for an Amazon AWS account. 
+  ## Warning!!! You will be charged at a certain amount of Tweets. Refer to [https://aws.amazon.com/comprehend/pricing/](https://aws.amazon.com/comprehend/pricing/) for more information about pricing. 
 1. Sign up for an Amazon AWS account: [aws.amazon.com](aws.amazon.com)
 2. Once signed up, login and click on your username.
 3. In the dropdown menu click on **My Security Credentials.**
