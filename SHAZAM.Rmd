@@ -1,0 +1,49 @@
+---
+title: "Collective Project Movie Tweets Collection - SHAZAM"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+```
+
+```{r cars}
+shazam_1 <- parse_stream("shazam1.json")
+shazam_2 <- parse_stream("shazam2.json")
+shazam_3 <- parse_stream("shazam3.json")
+shazam_4 <- parse_stream("shazam4.json")
+```
+
+```{r}
+merge1 = rbind(shazam_1, shazam_2)
+merge2 = rbind(merge1, shazam_3)
+shazam_merge = rbind(merge2, shazam_4)
+```
+
+```{r}
+tweets_language = str_trim(unlist(shazam_merge[5]))
+language = textcat(tweets_language)
+shazam_merge$lang=language
+```
+
+```{r}
+SHAZAM_TWEETS = filter(shazam_merge, lang == "english")
+```
+
+```{r}
+UNIQUE_SHAZAM = distinct(SHAZAM_TWEETS[5])
+UNIQUE_SHAZAM = UNIQUE_SHAZAM %>% filter(!str_detect(text, pattern = "to discover"), !str_detect(text, pattern = "https://"))
+write.csv(UNIQUE_SHAZAM, file = "FINALSHAZAMTWEETS.csv")
+```

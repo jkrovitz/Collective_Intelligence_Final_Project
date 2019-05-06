@@ -1,0 +1,46 @@
+---
+title: "Collective Project Movie Tweets Collection - Best of Enemies"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library("aws.comprehend")
+library(aws.iam)
+```
+
+```{r cars}
+BOE_1 <- parse_stream("BOE_1.json")
+BOE_2 <- parse_stream("BOE_2.json")
+BOE_3 <- parse_stream("BOE_3.json")
+```
+```{r}
+mergeBOE = rbind(BOE_1, BOE_2)
+biggerMerge = rbind(mergeBOE, BOE_3)
+```
+
+```{r}
+tweets_language = str_trim(unlist(biggerMerge[5]))
+language = textcat(tweets_language)
+biggerMerge$lang=language
+```
+
+```{r}
+BOE_TWEETS = filter(biggerMerge, lang == "english")
+```
+
+```{r}
+UNIQUE_BOE = distinct(english_tweets[5])
+UNIQUE_BOE = UNIQUE_BOE %>% filter(!str_detect(text, pattern="'Best of Enemies' Filmmakers Wanted to Stay True"), !str_detect(text, pattern = "true story"), !str_detect(text, pattern = "'The Best of Enemies' Review: A Klansman and a Civil Right"), !str_detect(text, pattern = "#KINDLE Wraiths by Peter Darman"), !str_detect(text, pattern = "https://"))
+write.csv(unique_tweets, file = "BOE.csv")
+```

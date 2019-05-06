@@ -1,0 +1,48 @@
+---
+title: "Collective Project Movie Tweets Collection - HELLBOY"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+library(jsonlite)
+```
+
+```{r cars}
+HELL_1 <- parse_stream("HELLBOY_1.json")
+HELL_2 <- parse_stream("HELLBOY_2.json")
+HELL_3 <- parse_stream("HELLBOY_3.json")
+```
+
+```{r}
+hell_merge = rbind(HELL_1, HELL_2)
+more_merge = rbind(hell_merge, HELL_3)
+```
+
+```{r}
+tweets_language = str_trim(unlist(more_merge[5]))
+language = textcat(tweets_language)
+more_merge$lang=language
+```
+
+```{r}
+HELL_TWEETS = filter(more_merge, lang == "english")
+```
+
+```{r}
+UNIQUE_HELL = distinct(HELL_TWEETS[5])
+UNIQUE_HELL = UNIQUE_HELL %>% filter(!str_detect(text, pattern = "https://"))
+HELL_CSV = write.csv(UNIQUE_HELL, file = "HELL.csv")
+```

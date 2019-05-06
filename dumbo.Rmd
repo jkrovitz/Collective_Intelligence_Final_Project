@@ -1,0 +1,46 @@
+---
+title: "Collective Project Movie Tweets Collection - Dumbo"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library("aws.comprehend")
+library(aws.iam)
+```
+
+```{r cars}
+dumboSmall <- parse_stream("dumbo_2.json")
+dumboMedium <- parse_stream("dumbo_1.json")
+dumboBig <- parse_stream("dumbo_3.json")
+```
+```{r}
+mergedDumbo = rbind(dumboSmall, dumboMedium)
+biggerMerge = rbind(mergedDumbo, dumboBig)
+```
+
+```{r}
+tweets_language = str_trim(unlist(biggerMerge[5]))
+language = textcat(tweets_language)
+biggerMerge$lang=language
+```
+
+```{r}
+final_dumbo_english = filter(biggerMerge, lang == "english")
+```
+
+```{r}
+final_dumbo_english = distinct(final_dumbo_english[5])
+dumbo_unique_tweets = final_dumbo_english %>% filter(!str_detect(text, pattern="From the Boxing Ring to 'Dumbo':"), !str_detect(text,pattern = "#Dumbo is the #1 movie in the world."), !str_detect(text, pattern = "5 reasons why Disney's live-action 'Dumbo' failed"), !str_detect(text, pattern = "'Dumbo' Soars to Top Spot at the Box Office"), !str_detect(text, pattern = "https://"))
+write.csv(dumbo_unique_tweets, file = "dumbotweets.csv")
+```

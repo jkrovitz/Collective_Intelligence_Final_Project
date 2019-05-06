@@ -1,0 +1,46 @@
+---
+title: "Collective Project Movie Tweets Collection - Missing Link"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+library(jsonlite)
+```
+
+```{r cars}
+MISSING_1 <- parse_stream("MISSING_1.json")
+MISSING_2 <- parse_stream("MISSING_2.json")
+```
+
+```{r}
+missing_merge = rbind(MISSING_1, MISSING_2)
+```
+
+```{r}
+tweets_language = str_trim(unlist(missing_merge[5]))
+language = textcat(tweets_language)
+missing_merge$lang=language
+```
+
+```{r}
+MISSING_TWEETS = filter(missing_merge, lang == "english")
+```
+
+```{r}
+UNIQUE_MISSING = distinct(MISSING_TWEETS[5])
+UNIQUE_MISSING = UNIQUE_MISSING %>% filter(!str_detect(text, pattern = "https://"), str_detect(text, pattern = "Missing Link"))
+UNIQUE_CSV = write.csv(UNIQUE_MISSING, file = "MISSING.csv")
+```

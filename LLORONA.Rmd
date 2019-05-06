@@ -1,0 +1,46 @@
+---
+title: "Collective Project Movie Tweets Collection - LA LLORONA"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+library(jsonlite)
+```
+
+```{r cars}
+# LLORONA <- parse_stream("llorona.json")
+MORE <- parse_stream("theCurseOfLaLloronaTweets1.json")
+```
+
+```{r}
+LLORONA = rbind(LLORONA, MORE)
+```
+
+```{r}
+tweets_language = str_trim(unlist(LLORONA[5]))
+language = textcat(tweets_language)
+LLORONA$lang=language
+```
+
+```{r}
+LLORONA_TWEETS = filter(LLORONA, lang == "english")
+```
+
+```{r}
+UNIQUE_LLORONA = distinct(LLORONA_TWEETS[5])
+UNIQUE_LLORONA = UNIQUE_LLORONA %>% filter(!str_detect(text, pattern = "https://"))
+LLORONA_CSV = write.csv(UNIQUE_LLORONA, file = "LLORONA.csv")
+```

@@ -1,0 +1,52 @@
+---
+title: "Collective Project Movie Tweets Collection - PET SEMATARY"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+library(jsonlite)
+```
+
+```{r cars}
+PET_1 <- parse_stream("1.json")
+PET_2 <- parse_stream("2.json")
+PET_3 <- parse_stream("3.json")
+PET_4 <- parse_stream("4.json")
+PET_5 <- parse_stream("5.json")
+```
+
+```{r}
+merge1 = rbind(PET_1, PET_2)
+merge2 = rbind(merge1, PET_3)
+merge3 = rbind(merge2, PET_4)
+merge4 = rbind(merge3, PET_5)
+```
+
+```{r}
+tweets_language = str_trim(unlist(merge4[5]))
+language = textcat(tweets_language)
+merge4$lang=language
+```
+
+```{r}
+PETSEM_TWEETS = filter(merge4, lang == "english")
+```
+
+```{r}
+UNIQUE_PETSEM = distinct(PETSEM_TWEETS[5])
+UNIQUE_PETSEM = UNIQUE_PETSEM %>% filter(!str_detect(text, pattern = "https://"))
+PETSEM = write.csv(UNIQUE_PETSEM, file = "PETSEM.csv")
+```

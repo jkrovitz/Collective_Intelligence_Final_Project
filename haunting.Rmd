@@ -1,0 +1,45 @@
+---
+title: "Collective Project Movie Tweets Collection - Haunting of Sharon Tate"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library("aws.comprehend")
+library(aws.iam)
+```
+
+```{r cars}
+haunt_1 <- parse_stream("haunting1.json")
+haunt_2 <- parse_stream("haunting2.json")
+```
+
+```{r}
+haunt_merge = rbind(haunt_1, haunt_2)
+```
+
+```{r}
+tweets_language = str_trim(unlist(haunt_merge[5]))
+language = textcat(tweets_language)
+haunt_merge$lang=language
+```
+
+```{r}
+haunt_tweets = filter(haunt_merge, lang == "english")
+```
+
+```{r}
+UNIQUE_HAUNT = distinct(haunt_tweets[5])
+UNIQUE_HAUNT = UNIQUE_HAUNT %>% filter(!str_detect(text, pattern = "https://"))
+write.csv(UNIQUE_HAUNT, file = "HAUNTING.csv")
+```

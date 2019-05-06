@@ -1,0 +1,41 @@
+---
+title: "Collective Project Movie Tweets Collection - Little Woods"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+library(jsonlite)
+```
+
+```{r cars}
+WOODS <- parse_stream("littleWoodsTweets1.json")
+```
+
+```{r}
+tweets_language = str_trim(unlist(WOODS[5]))
+language = textcat(tweets_language)
+WOODS$lang=language
+```
+
+```{r}
+WOODS_TWEETS = filter(WOODS, lang == "english")
+```
+
+```{r}
+UNIQUE_WOODS = distinct(WOODS_TWEETS[5])
+UNIQUE_WOODS = UNIQUE_WOODS %>% filter(!str_detect(text, pattern = "https://"))
+WOODS_CSV = write.csv(UNIQUE_WOODS, file = "WOODS.csv")
+```

@@ -1,0 +1,46 @@
+---
+title: "Collective Project Movie Tweets Collection - Breakthrough"
+author: "Andy Han"
+date: "April 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+library(textcat)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(aws.comprehend)
+library(aws.iam)
+library(jsonlite)
+```
+
+```{r cars}
+BREAK_1 <- parse_stream("breakthrough.json")
+BREAK_2 <- parse_stream("breakthroughTweets1.json")
+```
+
+```{r}
+BREAK_1 = rbind(BREAK_1, BREAK_2)
+```
+
+```{r}
+tweets_language = str_trim(unlist(BREAK_1[5]))
+language = textcat(tweets_language)
+BREAK_1$lang=language
+```
+
+```{r}
+BREAK_TWEETS = filter(BREAK_1, lang == "english")
+```
+
+```{r}
+UNIQUE_BREAK = distinct(BREAK_TWEETS[5])
+UNIQUE_BREAK = UNIQUE_BREAK %>% filter(!str_detect(text, pattern = "https://"))
+BREAK_CSV = write.csv(UNIQUE_BREAK, file = "BREAK.csv")
+```
