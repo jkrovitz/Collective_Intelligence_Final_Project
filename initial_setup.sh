@@ -15,4 +15,6 @@ exec "$SHELL"
 
 source ~/.bash_profile
 
+reset
+
 pyenv install -v 3.7.3

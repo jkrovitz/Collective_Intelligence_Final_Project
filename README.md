@@ -52,5 +52,3 @@ The project will curate and collect an original dataset of tweets about movies t
 12. A quit confirmation message will popup. Click **Quit** to confirm.
 
 13. You can then close the tab.
-
-14. Back in the terminal window, type in **conda deactivate**, which will deactivate the conda environment.

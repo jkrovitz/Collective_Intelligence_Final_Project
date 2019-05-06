@@ -7,3 +7,4 @@ textstat
 plotly
 ggplot
 matplotlib
+tweepy
