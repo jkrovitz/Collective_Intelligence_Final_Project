@@ -18,7 +18,7 @@ The project will curate and collect an original dataset of tweets about movies t
 • Week 4 (4/19) - The Curse of La Llorona, Breakthrough, Little Woods
 
 ## Before Installation:
-
+  ### If you wish to run sentiment_analysis.ipynb, you must sign up for an Amazon AWS account. <h3 style='color:red'> Warning! </h3> You will be charged at a certain amount of Tweets. Refer to [https://aws.amazon.com/comprehend/pricing/](https://aws.amazon.com/comprehend/pricing/) for more information about pricing. 
 1. Sign up for an Amazon AWS account: [aws.amazon.com](aws.amazon.com)
 2. Once signed up, login and click on your username.
 3. In the dropdown menu click on **My Security Credentials.**
@@ -41,14 +41,12 @@ The project will curate and collect an original dataset of tweets about movies t
 
 7. An internet browser tab should open up with an iPython Notebook. If a browser tab does not popup, open an internet browser window and type [http://localhost:8888/](http://localhost:8888) into the address bar.
 
-8. When the window loads, if the file 'readingInMovieTweets.ipynb' is not open, it should be displayed in the panel on the left. Click on it. If the file is already open, procede to step 11.
+8. Choose the desired ipynb file that you want to run. 
 
-9. Fill in your 'access key ID' and 'secret access key' where specified.
+9. Click **Run All Cells** to see the code output.
 
-10. Click **Run All Cells** to see the code output.
+10. When you are done running code, click **File** and select **Quit**.
 
-11. When you are done running code, click **File** and select **Quit**.
+11. A quit confirmation message will popup. Click **Quit** to confirm.
 
-12. A quit confirmation message will popup. Click **Quit** to confirm.
-
-13. You can then close the tab.
+12. You can then close the tab.
